@@ -41,11 +41,15 @@ ol {
   list-style: none;
 }
 
+.whatsapp-color {
+  background: #25d366;
+}
+
 .container {
   width: calc(100% - 44px);
   max-width: 1184px;
   margin-inline: auto;
-  padding: 24px 0;
+  padding: 28px 0;
 }
 
 section.closing-editorial .container {
@@ -129,11 +133,6 @@ section.closing-editorial .container {
   border-radius: 0;
   text-decoration: underline;
   text-underline-offset: 0.3em;
-}
-
-.button:hover,
-.button:focus-visible {
-  opacity: 0.78;
 }
 
 .button-group {
@@ -583,8 +582,6 @@ section.closing-editorial .container {
 
 .final-cta .button {
   width: 100%;
-  background: #0f0e0d;
-  color: #ffffff;
 }
 
 .site-footer {
