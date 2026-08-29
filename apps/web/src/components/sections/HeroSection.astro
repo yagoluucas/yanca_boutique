@@ -1,0 +1,34 @@
+---
+import Button from '../ui/Button.astro';
+import type { HomePageContent } from '../../content/types';
+
+interface Props {
+  content: HomePageContent['hero'];
+}
+
+const { content } = Astro.props;
+---
+
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__content">
+      {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
+      <h1 id="hero-title">{content.title}</h1>
+      {content.description && <p class="hero__description">{content.description}</p>}
+      <div class="button-group">
+        <Button {...content.primaryAction} />
+        <Button {...content.secondaryAction} variant="secondary" />
+      </div>
+    </div>
+    <div class="hero__media">
+      <img
+        src={content.image.src}
+        alt={content.image.alt}
+        width={content.image.width}
+        height={content.image.height}
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>

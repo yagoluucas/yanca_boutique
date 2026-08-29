@@ -1,0 +1,30 @@
+---
+import Button from '../ui/Button.astro';
+import ProductCard from '../ui/ProductCard.astro';
+import type { HomePageContent } from '../../content/types';
+
+interface Props {
+  content: HomePageContent['featuredProducts'];
+}
+
+const { content } = Astro.props;
+const headingId = `${content.id}-title`;
+---
+
+<section class="section products" id={content.id} aria-labelledby={headingId}>
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
+        <h2 id={headingId}>{content.title}</h2>
+      </div>
+      {content.description && <p>{content.description}</p>}
+    </div>
+    <div class="products__grid">
+      {content.items.map((product) => <ProductCard product={product} />)}
+    </div>
+    <div class="section-action">
+      <Button {...content.action} variant="secondary" />
+    </div>
+  </div>
+</section>

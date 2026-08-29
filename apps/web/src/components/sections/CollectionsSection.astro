@@ -1,0 +1,26 @@
+---
+import CollectionCard from '../ui/CollectionCard.astro';
+import type { HomePageContent } from '../../content/types';
+
+interface Props {
+  content: HomePageContent['collections'];
+}
+
+const { content } = Astro.props;
+const headingId = `${content.id}-title`;
+---
+
+<section class="section collections section--muted" id={content.id} aria-labelledby={headingId}>
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
+        <h2 id={headingId}>{content.title}</h2>
+      </div>
+      {content.description && <p>{content.description}</p>}
+    </div>
+    <div class="collections__grid">
+      {content.items.map((collection) => <CollectionCard collection={collection} />)}
+    </div>
+  </div>
+</section>

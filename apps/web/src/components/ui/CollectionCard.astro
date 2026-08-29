@@ -1,0 +1,33 @@
+---
+import type { CollectionContent } from '../../content/types';
+
+interface Props {
+  collection: CollectionContent;
+}
+
+const { collection } = Astro.props;
+---
+
+<article class="collection-card">
+  <img
+    src={collection.image.src}
+    alt={collection.image.alt}
+    width={collection.image.width}
+    height={collection.image.height}
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="collection-card__content">
+    <h3>{collection.title}</h3>
+    <p>{collection.description}</p>
+    <a
+      class="text-link"
+      href={collection.link.href}
+      target={collection.link.external ? '_blank' : undefined}
+      rel={collection.link.external ? 'noopener noreferrer' : undefined}
+    >
+      {collection.link.label}
+      {collection.link.external && <span class="sr-only"> (abre em uma nova aba)</span>}
+    </a>
+  </div>
+</article>

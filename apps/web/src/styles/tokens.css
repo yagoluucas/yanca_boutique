@@ -1,0 +1,32 @@
+:root {
+  --color-background: #ffffff;
+  --color-surface: #f5f3f0;
+  --color-text: #24201d;
+  --color-text-muted: #6a625c;
+  --color-primary: #403832;
+  --color-primary-contrast: #ffffff;
+  --color-secondary: #ded7d0;
+  --color-border: #d9d3ce;
+  --color-focus: #155eef;
+  --color-whatsapp: #157f42;
+
+  --font-heading: Georgia, 'Times New Roman', serif;
+  --font-body: Arial, Helvetica, sans-serif;
+
+  --container-width: 75rem;
+  --container-gutter: 1.25rem;
+
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.5rem;
+  --spacing-6: 2rem;
+  --spacing-7: 3rem;
+  --spacing-8: 4.5rem;
+  --spacing-9: 6rem;
+
+  --radius-small: 0.25rem;
+  --radius-medium: 0.5rem;
+  --transition-fast: 160ms ease;
+}

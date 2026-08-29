@@ -1,0 +1,16 @@
+---
+import BenefitCard from '../ui/BenefitCard.astro';
+import type { HomePageContent } from '../../content/types';
+
+interface Props {
+  content: HomePageContent['benefits'];
+}
+
+const { content } = Astro.props;
+---
+
+<section class="benefits section--compact" aria-label={content.accessibilityLabel}>
+  <div class="container benefits__grid">
+    {content.items.map((item) => <BenefitCard item={item} />)}
+  </div>
+</section>

@@ -1,0 +1,19 @@
+---
+interface Props {
+  label: string;
+  href: string;
+}
+
+const { label, href } = Astro.props;
+---
+
+<a
+  class="whatsapp-button"
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={`${label} (abre em uma nova aba)`}
+>
+  <span class="whatsapp-button__mark" aria-hidden="true">WA</span>
+  <span class="whatsapp-button__label">WhatsApp</span>
+</a>

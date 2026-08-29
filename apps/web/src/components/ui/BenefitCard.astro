@@ -1,0 +1,17 @@
+---
+import type { BenefitContent } from '../../content/types';
+
+interface Props {
+  item: BenefitContent;
+  index?: number;
+  numbered?: boolean;
+}
+
+const { item, index = 0, numbered = false } = Astro.props;
+---
+
+<article class:list={['benefit-card', { 'benefit-card--numbered': numbered }]}> 
+  {numbered && <span class="benefit-card__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>}
+  <h3>{item.title}</h3>
+  <p>{item.description}</p>
+</article>

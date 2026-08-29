@@ -1,0 +1,20 @@
+---
+import Button from '../ui/Button.astro';
+import type { HomePageContent } from '../../content/types';
+
+interface Props {
+  content: HomePageContent['finalCta'];
+}
+
+const { content } = Astro.props;
+const headingId = `${content.id}-title`;
+---
+
+<section class="final-cta section" id={content.id} aria-labelledby={headingId}>
+  <div class="container final-cta__inner">
+    {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
+    <h2 id={headingId}>{content.title}</h2>
+    {content.description && <p>{content.description}</p>}
+    <Button {...content.action} />
+  </div>
+</section>

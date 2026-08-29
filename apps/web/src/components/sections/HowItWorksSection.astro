@@ -1,0 +1,28 @@
+---
+import BenefitCard from '../ui/BenefitCard.astro';
+import type { HomePageContent } from '../../content/types';
+
+interface Props {
+  content: HomePageContent['howItWorks'];
+}
+
+const { content } = Astro.props;
+const headingId = `${content.id}-title`;
+---
+
+<section class="section how-it-works section--muted" id={content.id} aria-labelledby={headingId}>
+  <div class="container">
+    <div class="section-heading section-heading--centered">
+      <div>
+        {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
+        <h2 id={headingId}>{content.title}</h2>
+      </div>
+      {content.description && <p>{content.description}</p>}
+    </div>
+    <ol class="how-it-works__grid">
+      {content.steps.map((item, index) => (
+        <li><BenefitCard item={item} index={index} numbered /></li>
+      ))}
+    </ol>
+  </div>
+</section>

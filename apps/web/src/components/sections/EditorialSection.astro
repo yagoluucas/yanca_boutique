@@ -1,0 +1,32 @@
+---
+import Button from '../ui/Button.astro';
+import type { EditorialContent } from '../../content/types';
+
+interface Props {
+  content: EditorialContent;
+}
+
+const { content } = Astro.props;
+const headingId = `${content.id}-title`;
+---
+
+<section class="editorial section" id={content.id} aria-labelledby={headingId}>
+  <div class:list={['container', 'editorial__grid', { 'editorial__grid--image-end': content.imagePosition === 'end' }]}> 
+    <div class="editorial__media">
+      <img
+        src={content.image.src}
+        alt={content.image.alt}
+        width={content.image.width}
+        height={content.image.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="editorial__content">
+      {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
+      <h2 id={headingId}>{content.title}</h2>
+      {content.description && <p>{content.description}</p>}
+      {content.link && <Button {...content.link} variant="text" />}
+    </div>
+  </div>
+</section>

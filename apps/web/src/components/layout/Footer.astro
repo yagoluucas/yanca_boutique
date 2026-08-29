@@ -1,0 +1,47 @@
+---
+import type { HomePageContent } from '../../content/types';
+
+interface Props {
+  content: HomePageContent['footer'];
+}
+
+const { content } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <a class="site-footer__brand" href="#inicio">{content.brand}</a>
+      <p>{content.description}</p>
+    </div>
+    <nav aria-label={content.navigationLabel}>
+      <p class="site-footer__title">Navegação</p>
+      <ul>
+        {content.links.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div>
+      <p class="site-footer__title">{content.contactTitle}</p>
+      <ul>
+        {content.contactLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              target={link.external ? '_blank' : undefined}
+              rel={link.external ? 'noopener noreferrer' : undefined}
+            >
+              {link.label}
+              {link.external && <span class="sr-only"> (abre em uma nova aba)</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="container site-footer__bottom">
+    <p>© {currentYear} {content.copyright}</p>
+  </div>
+</footer>

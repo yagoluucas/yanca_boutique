@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage: string;
+}
+
+const { title, description, canonical, ogImage } = Astro.props;
+const resolvedCanonical = new URL(canonical, Astro.site ?? Astro.url).toString();
+const resolvedOgImage = new URL(ogImage, Astro.site ?? Astro.url).toString();
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={resolvedCanonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Yanca Boutique" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={resolvedCanonical} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:alt" content="Yanca Boutique" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo principal</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,12 @@
+---
+import EditorialSection from './EditorialSection.astro';
+import type { EditorialContent } from '../../content/types';
+
+interface Props {
+  content: EditorialContent;
+}
+
+const { content } = Astro.props;
+---
+
+<EditorialSection content={content} />

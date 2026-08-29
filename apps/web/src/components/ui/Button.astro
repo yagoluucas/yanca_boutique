@@ -1,0 +1,26 @@
+---
+import type { LinkContent } from '../../content/types';
+
+interface Props extends LinkContent {
+  variant?: 'primary' | 'secondary' | 'text';
+  class?: string;
+}
+
+const {
+  label,
+  href,
+  external = false,
+  variant = 'primary',
+  class: className,
+} = Astro.props;
+---
+
+<a
+  class:list={['button', `button--${variant}`, className]}
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+>
+  {label}
+  {external && <span class="sr-only"> (abre em uma nova aba)</span>}
+</a>

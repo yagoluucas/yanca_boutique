@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import BenefitsSection from '../components/sections/BenefitsSection.astro';
+import EditorialSection from '../components/sections/EditorialSection.astro';
+import FeaturedProductsSection from '../components/sections/FeaturedProductsSection.astro';
+import CollectionsSection from '../components/sections/CollectionsSection.astro';
+import AboutSection from '../components/sections/AboutSection.astro';
+import HowItWorksSection from '../components/sections/HowItWorksSection.astro';
+import ClosingEditorialSection from '../components/sections/ClosingEditorialSection.astro';
+import FinalCTASection from '../components/sections/FinalCTASection.astro';
+import WhatsAppButton from '../components/ui/WhatsAppButton.astro';
+import { getHomeContent } from '../content/getHomeContent';
+
+const content = await getHomeContent();
+---
+
+<BaseLayout {...content.seo}>
+  <Header content={content.header} />
+  <main id="conteudo-principal">
+    <HeroSection content={content.hero} />
+    <BenefitsSection content={content.benefits} />
+    <EditorialSection content={content.editorial} />
+    <FeaturedProductsSection content={content.featuredProducts} />
+    <CollectionsSection content={content.collections} />
+    <AboutSection content={content.about} />
+    <HowItWorksSection content={content.howItWorks} />
+    <ClosingEditorialSection content={content.closingEditorial} />
+    <FinalCTASection content={content.finalCta} />
+  </main>
+  <Footer content={content.footer} />
+  <WhatsAppButton {...content.whatsapp} />
+</BaseLayout>
