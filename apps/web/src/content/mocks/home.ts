@@ -236,7 +236,7 @@ export const homeContent: HomePageContent = {
     serviceTitle: 'Atendimento',
     serviceLines: ['WhatsApp', 'Segunda a sábado', 'Consulte horários de atendimento'],
     copyright: 'Yanca Boutique.',
-    closingLine: 'Catálogo virtual com atendimento pelo WhatsApp.',
+    closingLine: 'Todos os direitos reservados',
   },
   whatsapp: {
     label: 'Falar com a Yanca Boutique pelo WhatsApp',

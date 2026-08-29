@@ -14,6 +14,7 @@ const { label, href } = Astro.props;
   rel="noopener noreferrer"
   aria-label={`${label} (abre em uma nova aba)`}
 >
-  <span class="whatsapp-button__mark" aria-hidden="true">WA</span>
-  <span class="whatsapp-button__label">WhatsApp</span>
+  <span class="whatsapp-button__mark" aria-hidden="true">
+    <img src="/icons/whatsapp.svg" alt="" width="28" height="28" />
+  </span>
 </a>
