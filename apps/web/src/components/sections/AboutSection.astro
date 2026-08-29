@@ -1,5 +1,6 @@
 ---
 import BenefitCard from '../ui/BenefitCard.astro';
+import Button from '../ui/Button.astro';
 import type { HomePageContent } from '../../content/types';
 
 interface Props {
@@ -16,9 +17,10 @@ const headingId = `${content.id}-title`;
       {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
       <h2 id={headingId}>{content.title}</h2>
       {content.description && <p>{content.description}</p>}
+      <Button {...content.action} variant="secondary" />
     </div>
     <div class="about__highlights">
-      {content.highlights.map((item) => <BenefitCard item={item} />)}
+      {content.highlights.map((item, index) => <BenefitCard item={item} index={index} numbered />)}
     </div>
   </div>
 </section>

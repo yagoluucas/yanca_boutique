@@ -25,14 +25,17 @@ export interface BenefitContent {
 export interface ProductContent {
   name: string;
   category: string;
+  badge: string;
+  description: string;
   price: string;
+  installment: string;
   image: ImageContent;
   link: LinkContent;
 }
 
 export interface CollectionContent {
   title: string;
-  description: string;
+  eyebrow: string;
   image: ImageContent;
   link: LinkContent;
 }
@@ -53,14 +56,15 @@ export interface HomePageContent {
   };
   header: {
     brand: string;
+    monogram: string;
+    tagline: string;
+    menuLabel: string;
     navigationLabel: string;
     links: LinkContent[];
-    action: LinkContent;
   };
   hero: SectionHeadingContent & {
     primaryAction: LinkContent;
     secondaryAction: LinkContent;
-    image: ImageContent;
   };
   benefits: {
     accessibilityLabel: string;
@@ -78,10 +82,12 @@ export interface HomePageContent {
   };
   about: SectionHeadingContent & {
     id: string;
+    action: LinkContent;
     highlights: BenefitContent[];
   };
   howItWorks: SectionHeadingContent & {
     id: string;
+    action: LinkContent;
     steps: BenefitContent[];
   };
   closingEditorial: EditorialContent;
@@ -91,12 +97,16 @@ export interface HomePageContent {
   };
   footer: {
     brand: string;
+    monogram: string;
+    tagline: string;
     description: string;
     navigationLabel: string;
+    navigationTitle: string;
     links: LinkContent[];
-    contactTitle: string;
-    contactLinks: LinkContent[];
+    serviceTitle: string;
+    serviceLines: string[];
     copyright: string;
+    closingLine: string;
   };
   whatsapp: {
     label: string;

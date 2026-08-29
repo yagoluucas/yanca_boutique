@@ -16,13 +16,13 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.6rem, 11vw, 5.5rem);
-  letter-spacing: -0.04em;
+  font-size: clamp(3.25rem, 14vw, 6rem);
+  letter-spacing: -0.055em;
 }
 
 h2 {
-  font-size: clamp(2rem, 8vw, 3.75rem);
-  letter-spacing: -0.025em;
+  font-size: clamp(2.65rem, 10vw, 4.5rem);
+  letter-spacing: -0.045em;
 }
 
 h3 {

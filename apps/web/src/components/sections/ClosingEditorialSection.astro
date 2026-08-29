@@ -1,5 +1,4 @@
 ---
-import EditorialSection from './EditorialSection.astro';
 import type { EditorialContent } from '../../content/types';
 
 interface Props {
@@ -9,4 +8,15 @@ interface Props {
 const { content } = Astro.props;
 ---
 
-<EditorialSection content={content} />
+<section class="closing-editorial section" id={content.id} aria-label={content.title}>
+  <div class="container">
+    <img
+      src={content.image.src}
+      alt={content.image.alt}
+      width={content.image.width}
+      height={content.image.height}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</section>

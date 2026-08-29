@@ -1,20 +1,23 @@
 :root {
-  --color-background: #ffffff;
-  --color-surface: #f5f3f0;
-  --color-text: #24201d;
-  --color-text-muted: #6a625c;
-  --color-primary: #403832;
+  --color-background: #faf9f7;
+  --color-surface: #f1ebe7;
+  --color-text: #181614;
+  --color-text-muted: #68625e;
+  --color-primary: #cc806d;
   --color-primary-contrast: #ffffff;
-  --color-secondary: #ded7d0;
-  --color-border: #d9d3ce;
+  --color-secondary: #f4e9e4;
+  --color-border: #dedad6;
+  --color-dark: #0f0e0d;
+  --color-dark-surface: #191817;
+  --color-dark-muted: #aaa5a1;
   --color-focus: #155eef;
-  --color-whatsapp: #157f42;
+  --color-whatsapp: #0f0e0d;
 
   --font-heading: Georgia, 'Times New Roman', serif;
   --font-body: Arial, Helvetica, sans-serif;
 
-  --container-width: 75rem;
-  --container-gutter: 1.25rem;
+  --container-width: 74rem;
+  --container-gutter: 1.4rem;
 
   --spacing-1: 0.25rem;
   --spacing-2: 0.5rem;
@@ -26,7 +29,7 @@
   --spacing-8: 4.5rem;
   --spacing-9: 6rem;
 
-  --radius-small: 0.25rem;
-  --radius-medium: 0.5rem;
+  --radius-small: 999px;
+  --radius-medium: 1.75rem;
   --transition-fast: 160ms ease;
 }

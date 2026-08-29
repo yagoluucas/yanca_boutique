@@ -1,5 +1,6 @@
 ---
 import BenefitCard from '../ui/BenefitCard.astro';
+import Button from '../ui/Button.astro';
 import type { HomePageContent } from '../../content/types';
 
 interface Props {
@@ -12,7 +13,7 @@ const headingId = `${content.id}-title`;
 
 <section class="section how-it-works section--muted" id={content.id} aria-labelledby={headingId}>
   <div class="container">
-    <div class="section-heading section-heading--centered">
+    <div class="section-heading">
       <div>
         {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
         <h2 id={headingId}>{content.title}</h2>
@@ -24,5 +25,8 @@ const headingId = `${content.id}-title`;
         <li><BenefitCard item={item} index={index} numbered /></li>
       ))}
     </ol>
+    <div class="how-it-works__action">
+      <Button {...content.action} />
+    </div>
   </div>
 </section>

@@ -18,8 +18,8 @@ const { collection } = Astro.props;
     decoding="async"
   />
   <div class="collection-card__content">
+    <p class="collection-card__eyebrow">{collection.eyebrow}</p>
     <h3>{collection.title}</h3>
-    <p>{collection.description}</p>
     <a
       class="text-link"
       href={collection.link.href}

@@ -11,12 +11,18 @@ const currentYear = new Date().getFullYear();
 
 <footer class="site-footer">
   <div class="container site-footer__grid">
-    <div>
-      <a class="site-footer__brand" href="#inicio">{content.brand}</a>
+    <div class="site-footer__intro">
+      <a class="brand-lockup brand-lockup--footer" href="#inicio">
+        <span class="brand-lockup__mark" aria-hidden="true">{content.monogram}</span>
+        <span class="brand-lockup__text">
+          <strong>{content.brand}</strong>
+          <small>{content.tagline}</small>
+        </span>
+      </a>
       <p>{content.description}</p>
     </div>
     <nav aria-label={content.navigationLabel}>
-      <p class="site-footer__title">Navegação</p>
+      <p class="site-footer__title">{content.navigationTitle}</p>
       <ul>
         {content.links.map((link) => (
           <li><a href={link.href}>{link.label}</a></li>
@@ -24,24 +30,14 @@ const currentYear = new Date().getFullYear();
       </ul>
     </nav>
     <div>
-      <p class="site-footer__title">{content.contactTitle}</p>
+      <p class="site-footer__title">{content.serviceTitle}</p>
       <ul>
-        {content.contactLinks.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              target={link.external ? '_blank' : undefined}
-              rel={link.external ? 'noopener noreferrer' : undefined}
-            >
-              {link.label}
-              {link.external && <span class="sr-only"> (abre em uma nova aba)</span>}
-            </a>
-          </li>
-        ))}
+        {content.serviceLines.map((line) => <li>{line}</li>)}
       </ul>
     </div>
   </div>
   <div class="container site-footer__bottom">
     <p>© {currentYear} {content.copyright}</p>
+    <p>{content.closingLine}</p>
   </div>
 </footer>
