@@ -1,0 +1,302 @@
+---
+import { isAuthenticated } from '../lib/auth';
+import { cmsConfig } from '../lib/config';
+
+if (!isAuthenticated(Astro.request)) return Astro.redirect('/login');
+const siteUrl = cmsConfig.publicSiteUrl;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CMS | Yanca Boutique</title>
+    <style>
+      :root { font-family: Inter, ui-sans-serif, system-ui, sans-serif; color: #2d2623; background: #f5f0ec; }
+      * { box-sizing: border-box; }
+      body { margin: 0; }
+      button, input, textarea { font: inherit; }
+      .topbar { position: sticky; top: 0; z-index: 20; display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 14px 24px; background: rgb(255 255 255 / 0.96); border-bottom: 1px solid #e6ddd7; backdrop-filter: blur(12px); }
+      .topbar__actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      .brand { font-weight: 800; }
+      .shell { width: min(1180px, calc(100% - 32px)); margin: 28px auto 80px; }
+      .intro { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-bottom: 24px; }
+      h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.5rem); }
+      .muted { color: #756963; line-height: 1.55; }
+      .button { border: 0; border-radius: 10px; padding: 10px 14px; cursor: pointer; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+      .button--primary { background: #2d2623; color: white; }
+      .button--secondary { background: #eee6e1; color: #2d2623; }
+      .button--danger { background: #fff0f0; color: #8a2525; }
+      .button[disabled] { opacity: .55; cursor: progress; }
+      #editor { display: grid; gap: 14px; }
+      details { background: white; border: 1px solid #e5dbd4; border-radius: 14px; padding: 12px 14px; }
+      details details { margin-top: 10px; background: #fbf8f6; }
+      summary { cursor: pointer; font-weight: 800; padding: 4px 0; }
+      .field { display: grid; gap: 6px; margin: 12px 0; }
+      .field > span { font-size: .86rem; font-weight: 700; color: #5d514b; }
+      input[type='text'], input[type='url'], input[type='number'], textarea { width: 100%; border: 1px solid #d9cec7; border-radius: 9px; padding: 10px 11px; background: white; color: #2d2623; }
+      textarea { min-height: 92px; resize: vertical; }
+      input:focus, textarea:focus { outline: 2px solid #a98270; outline-offset: 1px; }
+      .array-item { border-left: 3px solid #d6c3b8; padding-left: 12px; margin: 12px 0; }
+      .array-actions { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+      .array-actions button { border: 1px solid #d8ccc5; background: white; border-radius: 8px; padding: 6px 9px; cursor: pointer; }
+      .upload { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; margin-top: 7px; }
+      .upload input { min-width: 0; }
+      .status { position: fixed; right: 18px; bottom: 18px; max-width: min(420px, calc(100vw - 36px)); padding: 12px 14px; border-radius: 11px; background: #2d2623; color: white; box-shadow: 0 12px 40px rgb(0 0 0 / .2); display: none; white-space: pre-wrap; }
+      .status[data-visible='true'] { display: block; }
+      .status[data-kind='error'] { background: #8a2525; }
+      .loading { padding: 32px; text-align: center; background: white; border-radius: 14px; }
+      @media (max-width: 720px) { .topbar { padding: 12px 16px; align-items: flex-start; } .intro { grid-template-columns: 1fr; } .upload { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <span class="brand">CMS Yanca Boutique</span>
+      <div class="topbar__actions">
+        <a class="button button--secondary" href={siteUrl} target="_blank" rel="noopener noreferrer">Ver site</a>
+        <button class="button button--primary" id="save" type="button" disabled>Publicar alterações</button>
+        <form action="/api/logout" method="post"><button class="button button--secondary" type="submit">Sair</button></form>
+      </div>
+    </header>
+
+    <main class="shell">
+      <div class="intro">
+        <div>
+          <h1>Conteúdo do site</h1>
+          <p class="muted">Edite textos, links, imagens, ordem dos itens e posições. Publicar cria um commit no GitHub; o site estático será atualizado no próximo deploy.</p>
+        </div>
+      </div>
+      <div id="editor"><div class="loading">Carregando conteúdo…</div></div>
+    </main>
+
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+
+    <script>
+      const editor = document.querySelector('#editor');
+      const saveButton = document.querySelector('#save');
+      const statusBox = document.querySelector('#status');
+
+      let content = null;
+      let currentSha = '';
+      let dirty = false;
+
+      const labels = {
+        seo: 'SEO', header: 'Cabeçalho', hero: 'Hero / destaque principal', featuredProducts: 'Peças da semana',
+        collections: 'Coleções', about: 'Sobre a Yanca', howItWorks: 'Como funciona', closingEditorial: 'Editorial final',
+        finalCta: 'Chamada final', footer: 'Rodapé', whatsapp: 'WhatsApp', title: 'Título', description: 'Descrição',
+        eyebrow: 'Texto auxiliar', image: 'Imagem', src: 'Imagem / caminho', alt: 'Texto alternativo', width: 'Largura', height: 'Altura',
+        focusPosition: 'Enquadramento da imagem', position: 'Posição do marcador', x: 'Horizontal (X %)', y: 'Vertical (Y %)',
+        items: 'Itens', links: 'Links', link: 'Link', label: 'Texto do botão/link', href: 'Destino', external: 'Abrir em nova aba',
+        primaryAction: 'Ação principal', secondaryAction: 'Ação secundária', action: 'Ação', highlights: 'Destaques', steps: 'Etapas',
+        details: 'Marcadores / detalhes', name: 'Nome', category: 'Categoria', badge: 'Selo', priceLabel: 'Texto do detalhe',
+        brand: 'Marca', monogram: 'Monograma', tagline: 'Assinatura', canonical: 'URL canônica', ogImage: 'Imagem social',
+        serviceLines: 'Linhas de atendimento', serviceTitle: 'Título de atendimento', copyright: 'Copyright', closingLine: 'Linha final',
+        menuLabel: 'Rótulo do menu', navigationLabel: 'Rótulo de navegação', navigationTitle: 'Título de navegação', id: 'ID técnico',
+        panelPosition: 'Posição do painel'
+      };
+
+      const humanize = (key) => labels[key] ?? key.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (c) => c.toUpperCase());
+      const markDirty = () => { dirty = true; saveButton.disabled = false; };
+      const showStatus = (message, kind = 'ok') => {
+        statusBox.textContent = message;
+        statusBox.dataset.kind = kind;
+        statusBox.dataset.visible = 'true';
+        clearTimeout(showStatus.timeout);
+        showStatus.timeout = setTimeout(() => { statusBox.dataset.visible = 'false'; }, 5000);
+      };
+
+      function cloneItem(value) {
+        const cloned = structuredClone(value);
+        if (cloned && typeof cloned === 'object' && !Array.isArray(cloned) && typeof cloned.id === 'string') {
+          cloned.id = `${cloned.id}-copia`;
+        }
+        return cloned;
+      }
+
+      function createPrimitiveField(parent, key, path) {
+        const value = parent[key];
+        const label = document.createElement('label');
+        label.className = 'field';
+        const caption = document.createElement('span');
+        caption.textContent = humanize(String(key));
+        label.append(caption);
+
+        let input;
+        if (typeof value === 'boolean') {
+          input = document.createElement('input');
+          input.type = 'checkbox';
+          input.checked = value;
+          input.addEventListener('change', () => { parent[key] = input.checked; markDirty(); });
+        } else if (typeof value === 'number') {
+          input = document.createElement('input');
+          input.type = 'number';
+          if (key === 'x' || key === 'y') { input.min = '0'; input.max = '100'; input.step = '1'; }
+          input.value = String(value);
+          input.addEventListener('input', () => { parent[key] = Number(input.value); markDirty(); });
+        } else {
+          const stringValue = value == null ? '' : String(value);
+          const longText = stringValue.length > 90 || ['description', 'priceLabel'].includes(String(key));
+          input = document.createElement(longText ? 'textarea' : 'input');
+          if (input instanceof HTMLInputElement) input.type = String(key).toLowerCase().includes('href') ? 'url' : 'text';
+          input.value = stringValue;
+          input.addEventListener('input', () => { parent[key] = input.value; markDirty(); });
+        }
+        label.append(input);
+
+        if ((key === 'src' && path.includes('.image.')) || key === 'ogImage') {
+          const upload = document.createElement('div');
+          upload.className = 'upload';
+          const fileInput = document.createElement('input');
+          fileInput.type = 'file';
+          fileInput.accept = 'image/jpeg,image/png,image/webp,image/avif';
+          const uploadButton = document.createElement('button');
+          uploadButton.type = 'button';
+          uploadButton.className = 'button button--secondary';
+          uploadButton.textContent = 'Enviar imagem';
+          uploadButton.addEventListener('click', async () => {
+            const file = fileInput.files?.[0];
+            if (!file) return showStatus('Selecione uma imagem primeiro.', 'error');
+            uploadButton.disabled = true;
+            uploadButton.textContent = 'Enviando…';
+            try {
+              const dimensions = await new Promise((resolve) => {
+                const image = new Image();
+                const url = URL.createObjectURL(file);
+                image.onload = () => { resolve({ width: image.naturalWidth, height: image.naturalHeight }); URL.revokeObjectURL(url); };
+                image.onerror = () => { resolve(null); URL.revokeObjectURL(url); };
+                image.src = url;
+              });
+              const data = new FormData();
+              data.append('file', file);
+              const response = await fetch('/api/media', { method: 'POST', body: data });
+              const result = await response.json();
+              if (!response.ok) throw new Error(result.error ?? 'Falha no upload.');
+              parent[key] = result.publicPath;
+              input.value = result.publicPath;
+              if (dimensions && parent && typeof parent === 'object') {
+                parent.width = dimensions.width;
+                parent.height = dimensions.height;
+              }
+              markDirty();
+              render();
+              showStatus('Imagem enviada. Clique em “Publicar alterações” para salvar o conteúdo.');
+            } catch (error) {
+              showStatus(error instanceof Error ? error.message : 'Falha no upload.', 'error');
+            } finally {
+              uploadButton.disabled = false;
+              uploadButton.textContent = 'Enviar imagem';
+            }
+          });
+          upload.append(fileInput, uploadButton);
+          label.append(upload);
+        }
+        return label;
+      }
+
+      function renderNode(value, key, parent, path, depth = 0) {
+        if (value === null || typeof value !== 'object') return createPrimitiveField(parent, key, path);
+
+        const details = document.createElement('details');
+        if (depth < 1) details.open = true;
+        const summary = document.createElement('summary');
+        summary.textContent = Array.isArray(value) ? `${humanize(String(key))} (${value.length})` : humanize(String(key));
+        details.append(summary);
+
+        if (Array.isArray(value)) {
+          value.forEach((item, index) => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'array-item';
+            const actions = document.createElement('div');
+            actions.className = 'array-actions';
+            const title = document.createElement('strong');
+            title.textContent = `${humanize(String(key))} ${index + 1}`;
+            actions.append(title);
+
+            const action = (text, disabled, handler) => {
+              const button = document.createElement('button');
+              button.type = 'button'; button.textContent = text; button.disabled = disabled;
+              button.addEventListener('click', handler); actions.append(button);
+            };
+            action('↑', index === 0, () => { [value[index - 1], value[index]] = [value[index], value[index - 1]]; markDirty(); render(); });
+            action('↓', index === value.length - 1, () => { [value[index + 1], value[index]] = [value[index], value[index + 1]]; markDirty(); render(); });
+            action('Duplicar', false, () => { value.splice(index + 1, 0, cloneItem(item)); markDirty(); render(); });
+            action('Remover', value.length <= 1, () => { value.splice(index, 1); markDirty(); render(); });
+            wrapper.append(actions);
+
+            if (item !== null && typeof item === 'object') {
+              Object.keys(item).forEach((childKey) => wrapper.append(renderNode(item[childKey], childKey, item, `${path}[${index}].${childKey}`, depth + 1)));
+            } else {
+              const holder = { value: item };
+              const field = createPrimitiveField(holder, 'value', `${path}[${index}]`);
+              field.querySelector('input,textarea')?.addEventListener('input', () => { value[index] = holder.value; });
+              wrapper.append(field);
+            }
+            details.append(wrapper);
+          });
+          return details;
+        }
+
+        Object.keys(value).forEach((childKey) => {
+          details.append(renderNode(value[childKey], childKey, value, `${path}.${childKey}`, depth + 1));
+        });
+        return details;
+      }
+
+      function render() {
+        if (!content) return;
+        editor.innerHTML = '';
+        Object.keys(content).forEach((key) => editor.append(renderNode(content[key], key, content, `content.${key}`)));
+      }
+
+      async function loadContent() {
+        try {
+          const response = await fetch('/api/content');
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error ?? 'Falha ao carregar conteúdo.');
+          content = result.content;
+          currentSha = result.sha;
+          render();
+          saveButton.disabled = true;
+        } catch (error) {
+          editor.innerHTML = `<div class="loading">${error instanceof Error ? error.message : 'Falha ao carregar conteúdo.'}</div>`;
+          showStatus(error instanceof Error ? error.message : 'Falha ao carregar conteúdo.', 'error');
+        }
+      }
+
+      saveButton.addEventListener('click', async () => {
+        if (!content || !currentSha) return;
+        saveButton.disabled = true;
+        saveButton.textContent = 'Publicando…';
+        try {
+          const response = await fetch('/api/content', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content, sha: currentSha }),
+          });
+          const result = await response.json();
+          if (!response.ok) {
+            const details = Array.isArray(result.details) ? `\n${result.details.join('\n')}` : '';
+            throw new Error(`${result.error ?? 'Falha ao publicar.'}${details}`);
+          }
+          currentSha = result.sha;
+          dirty = false;
+          showStatus('Conteúdo publicado no GitHub com sucesso.');
+        } catch (error) {
+          showStatus(error instanceof Error ? error.message : 'Falha ao publicar.', 'error');
+          saveButton.disabled = false;
+        } finally {
+          saveButton.textContent = 'Publicar alterações';
+        }
+      });
+
+      window.addEventListener('beforeunload', (event) => {
+        if (!dirty) return;
+        event.preventDefault();
+        event.returnValue = '';
+      });
+
+      loadContent();
+    </script>
+  </body>
+</html>

@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { collection } = Astro.props;
+const imageFocus = collection.image.focusPosition ?? { x: 50, y: 50 };
 ---
 
 <article class="collection-card">
@@ -16,6 +17,7 @@ const { collection } = Astro.props;
     height={collection.image.height}
     loading="lazy"
     decoding="async"
+    style={`object-position: ${imageFocus.x}% ${imageFocus.y}%;`}
   />
   <div class="collection-card__content">
     <p class="collection-card__eyebrow">{collection.eyebrow}</p>

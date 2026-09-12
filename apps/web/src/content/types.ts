@@ -1,8 +1,8 @@
 export interface ImageContent {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   /**
    * Ponto de enquadramento da imagem dentro do container, em porcentagem.
    * Ex.: { x: 50, y: 30 } centraliza horizontalmente e prioriza a parte superior.
@@ -97,6 +97,7 @@ export interface HomePageContent {
     links: LinkContent[];
   };
   hero: SectionHeadingContent & {
+    image: ImageContent;
     primaryAction: LinkContent;
     secondaryAction: LinkContent;
   };
