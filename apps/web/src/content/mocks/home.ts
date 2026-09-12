@@ -7,7 +7,7 @@ export const homeContent: HomePageContent = {
   seo: {
     title: "Yanca Boutique | Moda feminina para todos os momentos",
     description:
-      "PeÃ§as femininas selecionadas para quem gosta de se vestir com personalidade, conforto e praticidade.",
+      "Peças femininas selecionadas para quem gosta de se vestir com personalidade, conforto e praticidade.",
     canonical: "https://www.yancaboutique.com.br/",
     ogImage: "https://placehold.co/1200x630/efe7e2/1c1917?text=Yanca+Boutique",
   },
@@ -16,20 +16,20 @@ export const homeContent: HomePageContent = {
     monogram: "YB",
     tagline: "Moda feminina",
     menuLabel: "Abrir menu",
-    navigationLabel: "NavegaÃ§Ã£o principal",
+    navigationLabel: "Navegação principal",
     links: [
       { label: "Novidades", href: "#destaques" },
-      { label: "ColeÃ§Ãµes", href: "#colecoes" },
+      { label: "Coleções", href: "#colecoes" },
       { label: "Sobre a Yanca", href: "#sobre" },
       { label: "Como comprar", href: "#como-funciona" },
     ],
   },
   hero: {
     eyebrow: "Yanca Boutique",
-    title: "ElegÃ¢ncia em cada detalhe.",
+    title: "Elegância em cada detalhe.",
     description:
-      "Uma seleÃ§Ã£o de peÃ§as femininas para vocÃª se sentir ainda mais confiante em todos os momentos.",
-    primaryAction: { label: "ConheÃ§a a coleÃ§Ã£o", href: "#destaques" },
+      "Uma seleção de peças femininas para você se sentir ainda mais confiante em todos os momentos.",
+    primaryAction: { label: "Conheça a coleção", href: "#destaques" },
     secondaryAction: {
       label: "Receber atendimento",
       href: whatsappHref,
@@ -155,14 +155,14 @@ export const homeContent: HomePageContent = {
   collections: {
     id: "colecoes",
     eyebrow: "Encontre seu estilo",
-    title: "Explore as coleÃ§Ãµes da Yanca.",
+    title: "Explore as coleções da Yanca.",
     items: [
       {
-        title: "MacacÃµes",
-        eyebrow: "ElegÃ¢ncia e praticidade",
+        title: "Macacões",
+        eyebrow: "Elegância e praticidade",
         image: {
-          src: "https://placehold.co/720x860/6f5c55/ffffff?text=MacacÃµes",
-          alt: "EspaÃ§o reservado para a coleÃ§Ã£o de macacÃµes",
+          src: "https://placehold.co/720x860/6f5c55/ffffff?text=Macacões",
+          alt: "Espaço reservado para a coleção de macacões",
           width: 720,
           height: 860,
         },
@@ -170,10 +170,10 @@ export const homeContent: HomePageContent = {
       },
       {
         title: "Conjuntos",
-        eyebrow: "ProduÃ§Ãµes completas",
+        eyebrow: "Produções completas",
         image: {
           src: "https://placehold.co/720x860/8a796f/ffffff?text=Conjuntos",
-          alt: "EspaÃ§o reservado para a coleÃ§Ã£o de conjuntos",
+          alt: "Espaço reservado para a coleção de conjuntos",
           width: 720,
           height: 860,
         },
@@ -181,10 +181,10 @@ export const homeContent: HomePageContent = {
       },
       {
         title: "Vestidos",
-        eyebrow: "Femininos e versÃ¡teis",
+        eyebrow: "Femininos e versáteis",
         image: {
           src: "https://placehold.co/720x860/a89187/ffffff?text=Vestidos",
-          alt: "EspaÃ§o reservado para a coleÃ§Ã£o de vestidos",
+          alt: "Espaço reservado para a coleção de vestidos",
           width: 720,
           height: 860,
         },
@@ -195,7 +195,7 @@ export const homeContent: HomePageContent = {
         eyebrow: "Conforto para dias frios",
         image: {
           src: "https://placehold.co/720x860/9b8275/ffffff?text=Tricot",
-          alt: "EspaÃ§o reservado para a coleÃ§Ã£o de tricot",
+          alt: "Espaço reservado para a coleção de tricot",
           width: 720,
           height: 860,
         },
@@ -206,7 +206,7 @@ export const homeContent: HomePageContent = {
         eyebrow: "Para looks urbanos",
         image: {
           src: "https://placehold.co/720x860/71808a/ffffff?text=Jeans",
-          alt: "EspaÃ§o reservado para a coleÃ§Ã£o jeans",
+          alt: "Espaço reservado para a coleção jeans",
           width: 720,
           height: 860,
         },
@@ -214,10 +214,10 @@ export const homeContent: HomePageContent = {
       },
       {
         title: "Blusas",
-        eyebrow: "VersÃ¡teis para combinar",
+        eyebrow: "Versáteis para combinar",
         image: {
           src: "https://placehold.co/720x860/b88f82/ffffff?text=Blusas",
-          alt: "EspaÃ§o reservado para a coleÃ§Ã£o de blusas",
+          alt: "Espaço reservado para a coleção de blusas",
           width: 720,
           height: 860,
         },
@@ -228,9 +228,9 @@ export const homeContent: HomePageContent = {
   about: {
     id: "sobre",
     eyebrow: "Por que escolher a Yanca",
-    title: "Uma boutique pensada para tornar sua escolha mais fÃ¡cil.",
+    title: "Uma boutique pensada para tornar sua escolha mais fácil.",
     description:
-      "A Yanca Boutique reÃºne moda feminina com atendimento prÃ³ximo e uma seleÃ§Ã£o de peÃ§as que transitam entre o casual, o elegante e o marcante. O site funciona como uma vitrine: vocÃª conhece os produtos com calma e chama a loja quando quiser tirar dÃºvidas ou comprar.",
+      "A Yanca Boutique reúne moda feminina com atendimento próximo e uma seleção de peças que transitam entre o casual, o elegante e o marcante. O site funciona como uma vitrine: você conhece os produtos com calma e chama a loja quando quiser tirar dúvidas ou comprar.",
     action: {
       label: "Falar com a Yanca Boutique",
       href: whatsappHref,
@@ -240,17 +240,17 @@ export const homeContent: HomePageContent = {
       {
         title: "Atendimento humanizado",
         description:
-          "VocÃª conversa com a loja para confirmar medidas, cores, disponibilidade e entrega.",
+          "Você conversa com a loja para confirmar medidas, cores, disponibilidade e entrega.",
       },
       {
-        title: "SeleÃ§Ã£o de peÃ§as",
+        title: "Seleção de peças",
         description:
-          "Uma curadoria focada em looks femininos modernos, versÃ¡teis e fÃ¡ceis de usar.",
+          "Uma curadoria focada em looks femininos modernos, versáteis e fáceis de usar.",
       },
       {
-        title: "Compra sem complicaÃ§Ã£o",
+        title: "Compra sem complicação",
         description:
-          "Nada de cadastro ou checkout longo: escolha a peÃ§a e continue pelo WhatsApp.",
+          "Nada de cadastro ou checkout longo: escolha a peça e continue pelo WhatsApp.",
       },
     ],
   },
@@ -260,41 +260,41 @@ export const homeContent: HomePageContent = {
     title: "Do site para o seu guarda-roupa em poucos passos.",
     steps: [
       {
-        title: "Escolha sua peÃ§a",
+        title: "Escolha sua peça",
         description:
-          "Navegue pelos destaques e coleÃ§Ãµes para encontrar o look que combina com vocÃª.",
+          "Navegue pelos destaques e coleções para encontrar o look que combina com você.",
       },
       {
         title: "Chame pelo WhatsApp",
         description:
-          "O botÃ£o envia o nome da peÃ§a automaticamente para agilizar o atendimento.",
+          "O botão envia o nome da peça automaticamente para agilizar o atendimento.",
       },
       {
         title: "Confirme os detalhes",
         description:
-          "A loja informa tamanhos, cores, pagamento, retirada ou envio disponÃ­veis.",
+          "A loja informa tamanhos, cores, pagamento, retirada ou envio disponíveis.",
       },
     ],
     action: {
-      label: "ComeÃ§ar atendimento",
+      label: "Começar atendimento",
       href: whatsappHref,
       external: true,
     },
   },
   closingEditorial: {
     id: "editorial-final",
-    title: "Uma seleÃ§Ã£o feita para o seu estilo",
+    title: "Uma seleção feita para o seu estilo",
     image: {
       src: "https://placehold.co/900x1100/c9c2bd/1c1917?text=Look+Yanca",
-      alt: "EspaÃ§o reservado para uma fotografia de look completo da Yanca Boutique",
+      alt: "Espaço reservado para uma fotografia de look completo da Yanca Boutique",
       width: 900,
       height: 1100,
     },
   },
   finalCta: {
     id: "contato",
-    eyebrow: "Seu prÃ³ximo look estÃ¡ aqui",
-    title: "Encontrou uma peÃ§a que combina com vocÃª?",
+    eyebrow: "Seu próximo look está aqui",
+    title: "Encontrou uma peça que combina com você?",
     description:
       "Fale com a Yanca Boutique para consultar disponibilidade e receber atendimento personalizado.",
     action: {
@@ -308,20 +308,20 @@ export const homeContent: HomePageContent = {
     monogram: "YB",
     tagline: "Moda feminina",
     description:
-      "PeÃ§as selecionadas para mulheres que gostam de se vestir com personalidade.",
-    navigationLabel: "NavegaÃ§Ã£o do rodapÃ©",
-    navigationTitle: "NavegaÃ§Ã£o",
+      "Peças selecionadas para mulheres que gostam de se vestir com personalidade.",
+    navigationLabel: "Navegação do rodapé",
+    navigationTitle: "Navegação",
     links: [
       { label: "Novidades", href: "#destaques" },
-      { label: "ColeÃ§Ãµes", href: "#colecoes" },
+      { label: "Coleções", href: "#colecoes" },
       { label: "Sobre a Yanca", href: "#sobre" },
       { label: "Como comprar", href: "#como-funciona" },
     ],
     serviceTitle: "Atendimento",
     serviceLines: [
       "WhatsApp",
-      "Segunda a sÃ¡bado",
-      "Consulte horÃ¡rios de atendimento",
+      "Segunda a sábado",
+      "Consulte horários de atendimento",
     ],
     copyright: "Yanca Boutique.",
     closingLine: "Todos os direitos reservados",
