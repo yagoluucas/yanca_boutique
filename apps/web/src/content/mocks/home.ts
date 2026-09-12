@@ -25,11 +25,11 @@ export const homeContent: HomePageContent = {
     ],
   },
   hero: {
-    eyebrow: "Moda feminina selecionada para você",
-    title: "Peças que valorizam seu estilo em todos os momentos.",
+    eyebrow: "Yanca Boutique",
+    title: "Elegância em cada detalhe.",
     description:
-      "Descubra looks modernos, femininos e fáceis de combinar. Escolha sua peça favorita e fale com a Yanca Boutique pelo WhatsApp para consultar tamanho, cor e disponibilidade.",
-    primaryAction: { label: "Ver peças em destaque", href: "#destaques" },
+      "Uma seleção de peças femininas para você se sentir ainda mais confiante em todos os momentos.",
+    primaryAction: { label: "Conheça a coleção", href: "#destaques" },
     secondaryAction: {
       label: "Receber atendimento",
       href: whatsappHref,

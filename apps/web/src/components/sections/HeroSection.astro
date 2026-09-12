@@ -10,13 +10,18 @@ const { content } = Astro.props;
 ---
 
 <section class="hero" id="inicio" aria-labelledby="hero-title">
+  <div class="hero__media" aria-hidden="true">
+    <img src="/images/boutique-hero.png" alt="" />
+  </div>
   <div class="container hero__content">
-    {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
-    <h1 id="hero-title">{content.title}</h1>
-    {content.description && <p class="hero__description">{content.description}</p>}
-    <div class="button-group">
-      <Button {...content.primaryAction} />
-      <Button {...content.secondaryAction} variant="secondary" />
+    <div class="hero__panel">
+      {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
+      <h1 id="hero-title">{content.title}</h1>
+      {content.description && <p class="hero__description">{content.description}</p>}
+      <div class="button-group">
+        <Button {...content.primaryAction} />
+        <Button {...content.secondaryAction} variant="secondary" />
+      </div>
     </div>
   </div>
 </section>
