@@ -3,6 +3,14 @@ export interface ImageContent {
   alt: string;
   width: number;
   height: number;
+  /**
+   * Ponto de enquadramento da imagem dentro do container, em porcentagem.
+   * Ex.: { x: 50, y: 30 } centraliza horizontalmente e prioriza a parte superior.
+   */
+  focusPosition?: {
+    x: number;
+    y: number;
+  };
 }
 
 export interface LinkContent {
@@ -45,6 +53,10 @@ export interface EditorialItemContent {
   name: string;
   category: string;
   priceLabel: string;
+  /**
+   * Posição do marcador + dentro da imagem renderizada, em porcentagem.
+   * Deve ser ajustada para cada nova fotografia.
+   */
   position: {
     x: number;
     y: number;
