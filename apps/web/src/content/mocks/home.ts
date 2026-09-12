@@ -7,7 +7,7 @@ export const homeContent: HomePageContent = {
   seo: {
     title: "Yanca Boutique | Moda feminina para todos os momentos",
     description:
-      "Peças femininas selecionadas para quem gosta de se vestir com personalidade, conforto e praticidade.",
+      "PeÃ§as femininas selecionadas para quem gosta de se vestir com personalidade, conforto e praticidade.",
     canonical: "https://www.yancaboutique.com.br/",
     ogImage: "https://placehold.co/1200x630/efe7e2/1c1917?text=Yanca+Boutique",
   },
@@ -16,131 +16,134 @@ export const homeContent: HomePageContent = {
     monogram: "YB",
     tagline: "Moda feminina",
     menuLabel: "Abrir menu",
-    navigationLabel: "Navegação principal",
+    navigationLabel: "NavegaÃ§Ã£o principal",
     links: [
       { label: "Novidades", href: "#destaques" },
-      { label: "Coleções", href: "#colecoes" },
+      { label: "ColeÃ§Ãµes", href: "#colecoes" },
       { label: "Sobre a Yanca", href: "#sobre" },
       { label: "Como comprar", href: "#como-funciona" },
     ],
   },
   hero: {
     eyebrow: "Yanca Boutique",
-    title: "Elegância em cada detalhe.",
+    title: "ElegÃ¢ncia em cada detalhe.",
     description:
-      "Uma seleção de peças femininas para você se sentir ainda mais confiante em todos os momentos.",
-    primaryAction: { label: "Conheça a coleção", href: "#destaques" },
+      "Uma seleÃ§Ã£o de peÃ§as femininas para vocÃª se sentir ainda mais confiante em todos os momentos.",
+    primaryAction: { label: "ConheÃ§a a coleÃ§Ã£o", href: "#destaques" },
     secondaryAction: {
       label: "Receber atendimento",
       href: whatsappHref,
       external: true,
     },
   },
-  editorial: {
-    id: "novidades",
-    eyebrow: "Editorial Yanca",
-    title: "Compre o look",
-    description: "Toque nos pontos para conhecer cada peça.",
-    looks: [
+  featuredProducts: {
+    id: "destaques",
+    eyebrow: "Peças da semana",
+    title: "Três escolhas para montar o look.",
+    description:
+      "Toque nos pontos da imagem para ver os detalhes de cada peça. Depois, chame a boutique para consultar disponibilidade pelo WhatsApp.",
+    items: [
       {
-        id: "look-comfy-1",
+        id: "look-comfy-off-white-1",
+        name: "Conjunto Comfy Off-white",
+        category: "Conjuntos",
+        badge: "Look 01",
+        description:
+          "Blusa e calça em tom claro, com proposta confortável para dias frios e produções casuais elegantes.",
         image: {
           src: "/images/conjunto-frio-1.jpeg",
-          alt: "Modelo usando blusa e calça comfy em tons off-white",
+          alt: "Modelo usando conjunto comfy off-white com blusa e calça",
           width: 737,
           height: 1305,
         },
-        items: [
+        details: [
           {
             id: "blusa-comfy-off-white",
             name: "Blusa Comfy Off-white",
             category: "Blusas",
-            priceLabel: "Consulte o valor",
+            priceLabel: "Gola alta, toque macio e caimento confortável para compor looks de frio.",
             position: { x: 65, y: 42 },
-            link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Blusa%20Comfy%20Off-white%20do%20look%20editorial.", external: true },
+            link: { label: "Consultar no WhatsApp", href: whatsappHref, external: true },
           },
           {
             id: "calca-comfy-off-white",
             name: "Calça Comfy Off-white",
             category: "Calças",
-            priceLabel: "Consulte o valor",
+            priceLabel: "Cintura confortável e visual clean para usar em conjunto ou combinar com outras peças.",
             position: { x: 63, y: 78 },
-            link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Cal%C3%A7a%20Comfy%20Off-white%20do%20look%20editorial.", external: true },
+            panelPosition: "left",
+            link: { label: "Consultar no WhatsApp", href: whatsappHref, external: true },
           },
         ],
+        link: { label: "Consultar look", href: whatsappHref, external: true },
       },
       {
-        id: "look-comfy-2",
-        image: { src: "/images/conjunto-frio-1.jpeg", alt: "Modelo usando blusa e calça comfy em tons off-white", width: 737, height: 1305 },
-        items: [
-          { id: "blusa-comfy-off-white", name: "Blusa Comfy Off-white", category: "Blusas", priceLabel: "Consulte o valor", position: { x: 65, y: 42 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Blusa%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
-          { id: "calca-comfy-off-white", name: "Calça Comfy Off-white", category: "Calças", priceLabel: "Consulte o valor", position: { x: 63, y: 78 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Cal%C3%A7a%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
-        ],
-      },
-      {
-        id: "look-comfy-3",
-        image: { src: "/images/conjunto-frio-1.jpeg", alt: "Modelo usando blusa e calça comfy em tons off-white", width: 737, height: 1305 },
-        items: [
-          { id: "blusa-comfy-off-white", name: "Blusa Comfy Off-white", category: "Blusas", priceLabel: "Consulte o valor", position: { x: 65, y: 42 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Blusa%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
-          { id: "calca-comfy-off-white", name: "Calça Comfy Off-white", category: "Calças", priceLabel: "Consulte o valor", position: { x: 63, y: 78 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Cal%C3%A7a%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
-        ],
-      },
-    ],
-  },
-  featuredProducts: {
-    id: "destaques",
-    eyebrow: "Destaques da semana",
-    title: "Três peças para começar a coleção.",
-    description:
-      "Uma vitrine enxuta para apresentar os principais produtos logo no início. A disponibilidade pode ser confirmada diretamente pelo WhatsApp.",
-    items: [
-      {
-        name: "Macacão Canelado Preto",
-        category: "Macacões",
-        badge: "Clássico",
-        description:
-          "Modelagem ajustada, tecido canelado e visual versátil para produções do dia à noite.",
-        price: "R$ 189,90",
-        installment: "ou 3x de R$ 63,30",
-        image: {
-          src: "https://placehold.co/720x900/d7d4d1/1c1917?text=Macacão+Preto",
-          alt: "Espaço reservado para foto do Macacão Canelado Preto",
-          width: 720,
-          height: 900,
-        },
-        link: { label: "Consultar peça", href: whatsappHref, external: true },
-      },
-      {
-        name: "Macacão Tricot Off-White",
-        category: "Macacões",
-        badge: "Mais desejado",
-        description:
-          "Um look claro e elegante, com textura suave e caimento que acompanha a silhueta.",
-        price: "R$ 199,90",
-        installment: "ou 3x de R$ 66,63",
-        image: {
-          src: "https://placehold.co/720x900/e5e0db/1c1917?text=Macacão+Off-White",
-          alt: "Espaço reservado para foto do Macacão Tricot Off-White",
-          width: 720,
-          height: 900,
-        },
-        link: { label: "Consultar peça", href: whatsappHref, external: true },
-      },
-      {
-        name: "Conjunto Jeans Estampado",
+        id: "look-comfy-off-white-2",
+        name: "Conjunto Casual Claro",
         category: "Conjuntos",
-        badge: "Novidade",
+        badge: "Look 02",
         description:
-          "Top estruturado e saia curta em jeans para um visual jovem.",
-        price: "R$ 219,90",
-        installment: "ou 3x de R$ 73,30",
+          "Uma proposta leve e versátil para quem quer praticidade sem perder a sensação de look pensado.",
         image: {
-          src: "https://placehold.co/720x900/b9c8d2/1c1917?text=Conjunto+Jeans",
-          alt: "Espaço reservado para foto do Conjunto Jeans Estampado",
-          width: 720,
-          height: 900,
+          src: "/images/conjunto-frio-1.jpeg",
+          alt: "Modelo usando conjunto casual claro com blusa e calça",
+          width: 737,
+          height: 1305,
         },
-        link: { label: "Consultar peça", href: whatsappHref, external: true },
+        details: [
+          {
+            id: "blusa-casual-clara",
+            name: "Blusa Casual Clara",
+            category: "Blusas",
+            priceLabel: "Modelagem confortável, ideal para usar fechada ou com a gola mais aberta.",
+            position: { x: 65, y: 42 },
+            link: { label: "Consultar no WhatsApp", href: whatsappHref, external: true },
+          },
+          {
+            id: "calca-casual-clara",
+            name: "Calça Casual Clara",
+            category: "Calças",
+            priceLabel: "Peça prática para uma composição monocromática com toque sofisticado.",
+            position: { x: 63, y: 78 },
+            panelPosition: "left",
+            link: { label: "Consultar no WhatsApp", href: whatsappHref, external: true },
+          },
+        ],
+        link: { label: "Consultar look", href: whatsappHref, external: true },
+      },
+      {
+        id: "look-comfy-off-white-3",
+        name: "Look Off-white de Frio",
+        category: "Conjuntos",
+        badge: "Look 03",
+        description:
+          "Visual coordenado em tons claros, pensado para transmitir conforto, cuidado e presença.",
+        image: {
+          src: "/images/conjunto-frio-1.jpeg",
+          alt: "Modelo usando look off-white de frio com blusa e calça",
+          width: 737,
+          height: 1305,
+        },
+        details: [
+          {
+            id: "blusa-frio-off-white",
+            name: "Blusa Frio Off-white",
+            category: "Blusas",
+            priceLabel: "Detalhe de gola alta e textura confortável para dias de temperatura mais baixa.",
+            position: { x: 65, y: 42 },
+            link: { label: "Consultar no WhatsApp", href: whatsappHref, external: true },
+          },
+          {
+            id: "calca-frio-off-white",
+            name: "Calça Frio Off-white",
+            category: "Calças",
+            priceLabel: "Caimento casual e cor neutra para facilitar combinações no guarda-roupa.",
+            position: { x: 63, y: 78 },
+            panelPosition: "left",
+            link: { label: "Consultar no WhatsApp", href: whatsappHref, external: true },
+          },
+        ],
+        link: { label: "Consultar look", href: whatsappHref, external: true },
       },
     ],
     action: {
@@ -152,14 +155,14 @@ export const homeContent: HomePageContent = {
   collections: {
     id: "colecoes",
     eyebrow: "Encontre seu estilo",
-    title: "Explore as coleções da Yanca.",
+    title: "Explore as coleÃ§Ãµes da Yanca.",
     items: [
       {
-        title: "Macacões",
-        eyebrow: "Elegância e praticidade",
+        title: "MacacÃµes",
+        eyebrow: "ElegÃ¢ncia e praticidade",
         image: {
-          src: "https://placehold.co/720x860/6f5c55/ffffff?text=Macacões",
-          alt: "Espaço reservado para a coleção de macacões",
+          src: "https://placehold.co/720x860/6f5c55/ffffff?text=MacacÃµes",
+          alt: "EspaÃ§o reservado para a coleÃ§Ã£o de macacÃµes",
           width: 720,
           height: 860,
         },
@@ -167,10 +170,10 @@ export const homeContent: HomePageContent = {
       },
       {
         title: "Conjuntos",
-        eyebrow: "Produções completas",
+        eyebrow: "ProduÃ§Ãµes completas",
         image: {
           src: "https://placehold.co/720x860/8a796f/ffffff?text=Conjuntos",
-          alt: "Espaço reservado para a coleção de conjuntos",
+          alt: "EspaÃ§o reservado para a coleÃ§Ã£o de conjuntos",
           width: 720,
           height: 860,
         },
@@ -178,10 +181,10 @@ export const homeContent: HomePageContent = {
       },
       {
         title: "Vestidos",
-        eyebrow: "Femininos e versáteis",
+        eyebrow: "Femininos e versÃ¡teis",
         image: {
           src: "https://placehold.co/720x860/a89187/ffffff?text=Vestidos",
-          alt: "Espaço reservado para a coleção de vestidos",
+          alt: "EspaÃ§o reservado para a coleÃ§Ã£o de vestidos",
           width: 720,
           height: 860,
         },
@@ -192,7 +195,7 @@ export const homeContent: HomePageContent = {
         eyebrow: "Conforto para dias frios",
         image: {
           src: "https://placehold.co/720x860/9b8275/ffffff?text=Tricot",
-          alt: "Espaço reservado para a coleção de tricot",
+          alt: "EspaÃ§o reservado para a coleÃ§Ã£o de tricot",
           width: 720,
           height: 860,
         },
@@ -203,7 +206,7 @@ export const homeContent: HomePageContent = {
         eyebrow: "Para looks urbanos",
         image: {
           src: "https://placehold.co/720x860/71808a/ffffff?text=Jeans",
-          alt: "Espaço reservado para a coleção jeans",
+          alt: "EspaÃ§o reservado para a coleÃ§Ã£o jeans",
           width: 720,
           height: 860,
         },
@@ -211,10 +214,10 @@ export const homeContent: HomePageContent = {
       },
       {
         title: "Blusas",
-        eyebrow: "Versáteis para combinar",
+        eyebrow: "VersÃ¡teis para combinar",
         image: {
           src: "https://placehold.co/720x860/b88f82/ffffff?text=Blusas",
-          alt: "Espaço reservado para a coleção de blusas",
+          alt: "EspaÃ§o reservado para a coleÃ§Ã£o de blusas",
           width: 720,
           height: 860,
         },
@@ -225,9 +228,9 @@ export const homeContent: HomePageContent = {
   about: {
     id: "sobre",
     eyebrow: "Por que escolher a Yanca",
-    title: "Uma boutique pensada para tornar sua escolha mais fácil.",
+    title: "Uma boutique pensada para tornar sua escolha mais fÃ¡cil.",
     description:
-      "A Yanca Boutique reúne moda feminina com atendimento próximo e uma seleção de peças que transitam entre o casual, o elegante e o marcante. O site funciona como uma vitrine: você conhece os produtos com calma e chama a loja quando quiser tirar dúvidas ou comprar.",
+      "A Yanca Boutique reÃºne moda feminina com atendimento prÃ³ximo e uma seleÃ§Ã£o de peÃ§as que transitam entre o casual, o elegante e o marcante. O site funciona como uma vitrine: vocÃª conhece os produtos com calma e chama a loja quando quiser tirar dÃºvidas ou comprar.",
     action: {
       label: "Falar com a Yanca Boutique",
       href: whatsappHref,
@@ -237,17 +240,17 @@ export const homeContent: HomePageContent = {
       {
         title: "Atendimento humanizado",
         description:
-          "Você conversa com a loja para confirmar medidas, cores, disponibilidade e entrega.",
+          "VocÃª conversa com a loja para confirmar medidas, cores, disponibilidade e entrega.",
       },
       {
-        title: "Seleção de peças",
+        title: "SeleÃ§Ã£o de peÃ§as",
         description:
-          "Uma curadoria focada em looks femininos modernos, versáteis e fáceis de usar.",
+          "Uma curadoria focada em looks femininos modernos, versÃ¡teis e fÃ¡ceis de usar.",
       },
       {
-        title: "Compra sem complicação",
+        title: "Compra sem complicaÃ§Ã£o",
         description:
-          "Nada de cadastro ou checkout longo: escolha a peça e continue pelo WhatsApp.",
+          "Nada de cadastro ou checkout longo: escolha a peÃ§a e continue pelo WhatsApp.",
       },
     ],
   },
@@ -257,41 +260,41 @@ export const homeContent: HomePageContent = {
     title: "Do site para o seu guarda-roupa em poucos passos.",
     steps: [
       {
-        title: "Escolha sua peça",
+        title: "Escolha sua peÃ§a",
         description:
-          "Navegue pelos destaques e coleções para encontrar o look que combina com você.",
+          "Navegue pelos destaques e coleÃ§Ãµes para encontrar o look que combina com vocÃª.",
       },
       {
         title: "Chame pelo WhatsApp",
         description:
-          "O botão envia o nome da peça automaticamente para agilizar o atendimento.",
+          "O botÃ£o envia o nome da peÃ§a automaticamente para agilizar o atendimento.",
       },
       {
         title: "Confirme os detalhes",
         description:
-          "A loja informa tamanhos, cores, pagamento, retirada ou envio disponíveis.",
+          "A loja informa tamanhos, cores, pagamento, retirada ou envio disponÃ­veis.",
       },
     ],
     action: {
-      label: "Começar atendimento",
+      label: "ComeÃ§ar atendimento",
       href: whatsappHref,
       external: true,
     },
   },
   closingEditorial: {
     id: "editorial-final",
-    title: "Uma seleção feita para o seu estilo",
+    title: "Uma seleÃ§Ã£o feita para o seu estilo",
     image: {
       src: "https://placehold.co/900x1100/c9c2bd/1c1917?text=Look+Yanca",
-      alt: "Espaço reservado para uma fotografia de look completo da Yanca Boutique",
+      alt: "EspaÃ§o reservado para uma fotografia de look completo da Yanca Boutique",
       width: 900,
       height: 1100,
     },
   },
   finalCta: {
     id: "contato",
-    eyebrow: "Seu próximo look está aqui",
-    title: "Encontrou uma peça que combina com você?",
+    eyebrow: "Seu prÃ³ximo look estÃ¡ aqui",
+    title: "Encontrou uma peÃ§a que combina com vocÃª?",
     description:
       "Fale com a Yanca Boutique para consultar disponibilidade e receber atendimento personalizado.",
     action: {
@@ -305,20 +308,20 @@ export const homeContent: HomePageContent = {
     monogram: "YB",
     tagline: "Moda feminina",
     description:
-      "Peças selecionadas para mulheres que gostam de se vestir com personalidade.",
-    navigationLabel: "Navegação do rodapé",
-    navigationTitle: "Navegação",
+      "PeÃ§as selecionadas para mulheres que gostam de se vestir com personalidade.",
+    navigationLabel: "NavegaÃ§Ã£o do rodapÃ©",
+    navigationTitle: "NavegaÃ§Ã£o",
     links: [
       { label: "Novidades", href: "#destaques" },
-      { label: "Coleções", href: "#colecoes" },
+      { label: "ColeÃ§Ãµes", href: "#colecoes" },
       { label: "Sobre a Yanca", href: "#sobre" },
       { label: "Como comprar", href: "#como-funciona" },
     ],
     serviceTitle: "Atendimento",
     serviceLines: [
       "WhatsApp",
-      "Segunda a sábado",
-      "Consulte horários de atendimento",
+      "Segunda a sÃ¡bado",
+      "Consulte horÃ¡rios de atendimento",
     ],
     copyright: "Yanca Boutique.",
     closingLine: "Todos os direitos reservados",

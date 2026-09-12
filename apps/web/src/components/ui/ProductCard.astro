@@ -8,14 +8,8 @@ interface Props {
 const { product } = Astro.props;
 ---
 
-<article class="product-card">
-  <a
-    class="product-card__image-link"
-    href={product.link.href}
-    target={product.link.external ? '_blank' : undefined}
-    rel={product.link.external ? 'noopener noreferrer' : undefined}
-    aria-label={`${product.link.label}: ${product.name}`}
-  >
+<article class="product-card" data-product-card>
+  <div class="product-card__media">
     <span class="product-card__badge">{product.badge}</span>
     <img
       src={product.image.src}
@@ -25,15 +19,51 @@ const { product } = Astro.props;
       loading="lazy"
       decoding="async"
     />
-  </a>
+
+    {product.details.map((detail, index) => {
+      const panelId = `${product.id}-${detail.id}-panel`;
+      return (
+        <button
+          class="product-card__hotspot"
+          type="button"
+          style={`--hotspot-x: ${detail.position.x}%; --hotspot-y: ${detail.position.y}%;`}
+          aria-label={`Ver detalhes: ${detail.name}`}
+          aria-expanded="false"
+          aria-controls={panelId}
+          data-product-hotspot
+          data-target={panelId}
+        >
+          <span aria-hidden="true">+</span>
+          <span class="sr-only">Detalhe {index + 1}</span>
+        </button>
+      );
+    })}
+
+    {product.details.map((detail) => {
+      const panelId = `${product.id}-${detail.id}-panel`;
+      return (
+        <article
+          class:list={['product-card__detail', `product-card__detail--${detail.panelPosition ?? 'right'}`]}
+          id={panelId}
+          style={`--detail-x: ${detail.position.x}%; --detail-y: ${detail.position.y}%;`}
+          data-product-detail
+          hidden
+        >
+          <button class="product-card__detail-close" type="button" aria-label={`Fechar detalhes de ${detail.name}`} data-product-detail-close>
+            <span aria-hidden="true">×</span>
+          </button>
+          <p class="product-card__detail-category">{detail.category}</p>
+          <h4>{detail.name}</h4>
+          <p>{detail.priceLabel}</p>
+        </article>
+      );
+    })}
+  </div>
+
   <div class="product-card__content">
     <p class="product-card__category">{product.category}</p>
     <h3>{product.name}</h3>
     <p class="product-card__description">{product.description}</p>
-    <div class="product-card__buying">
-      <p class="product-card__price">{product.price}</p>
-      <p class="product-card__installment">{product.installment}</p>
-    </div>
     <a
       class="text-link"
       href={product.link.href}
@@ -46,3 +76,32 @@ const { product } = Astro.props;
     </a>
   </div>
 </article>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-product-card]').forEach((card) => {
+    const hotspots = Array.from(card.querySelectorAll<HTMLButtonElement>('[data-product-hotspot]'));
+    const panels = Array.from(card.querySelectorAll<HTMLElement>('[data-product-detail]'));
+
+    const closeDetails = (returnFocus = false) => {
+      const activeHotspot = hotspots.find((hotspot) => hotspot.getAttribute('aria-expanded') === 'true');
+      hotspots.forEach((hotspot) => hotspot.setAttribute('aria-expanded', 'false'));
+      panels.forEach((panel) => { panel.hidden = true; });
+      if (returnFocus) activeHotspot?.focus();
+    };
+
+    hotspots.forEach((hotspot) => {
+      hotspot.addEventListener('click', () => {
+        const wasOpen = hotspot.getAttribute('aria-expanded') === 'true';
+        const panel = card.querySelector<HTMLElement>(`#${hotspot.dataset.target}`);
+        closeDetails();
+        if (wasOpen || !panel) return;
+        hotspot.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+      });
+    });
+
+    card.querySelectorAll<HTMLButtonElement>('[data-product-detail-close]').forEach((button) => button.addEventListener('click', () => closeDetails(true)));
+    document.addEventListener('click', (event) => { if (event.target instanceof Node && !card.contains(event.target)) closeDetails(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeDetails(true); });
+  });
+</script>

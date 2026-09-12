@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
-import EditorialSection from '../components/sections/EditorialSection.astro';
 import FeaturedProductsSection from '../components/sections/FeaturedProductsSection.astro';
 import CollectionsSection from '../components/sections/CollectionsSection.astro';
 import AboutSection from '../components/sections/AboutSection.astro';
@@ -20,7 +19,6 @@ const content = await getHomeContent();
   <Header content={content.header} />
   <main id="conteudo-principal">
     <HeroSection content={content.hero} />
-    <EditorialSection content={content.editorial} />
     <FeaturedProductsSection content={content.featuredProducts} />
     <CollectionsSection content={content.collections} />
     <AboutSection content={content.about} />

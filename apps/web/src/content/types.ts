@@ -23,13 +23,13 @@ export interface BenefitContent {
 }
 
 export interface ProductContent {
+  id: string;
   name: string;
   category: string;
   badge: string;
   description: string;
-  price: string;
-  installment: string;
   image: ImageContent;
+  details: EditorialItemContent[];
   link: LinkContent;
 }
 
@@ -88,7 +88,6 @@ export interface HomePageContent {
     primaryAction: LinkContent;
     secondaryAction: LinkContent;
   };
-  editorial: EditorialContent;
   featuredProducts: SectionHeadingContent & {
     id: string;
     items: ProductContent[];
