@@ -40,11 +40,33 @@ export interface CollectionContent {
   link: LinkContent;
 }
 
-export interface EditorialContent extends SectionHeadingContent {
+export interface EditorialItemContent {
+  id: string;
+  name: string;
+  category: string;
+  priceLabel: string;
+  position: {
+    x: number;
+    y: number;
+  };
+  panelPosition?: 'left' | 'right';
+  link: LinkContent;
+}
+
+export interface EditorialLookContent {
   id: string;
   image: ImageContent;
-  link?: LinkContent;
-  imagePosition?: 'start' | 'end';
+  items: EditorialItemContent[];
+}
+
+export interface EditorialContent extends SectionHeadingContent {
+  id: string;
+  looks: EditorialLookContent[];
+}
+
+export interface ClosingEditorialContent extends SectionHeadingContent {
+  id: string;
+  image: ImageContent;
 }
 
 export interface HomePageContent {
@@ -66,10 +88,6 @@ export interface HomePageContent {
     primaryAction: LinkContent;
     secondaryAction: LinkContent;
   };
-  benefits: {
-    accessibilityLabel: string;
-    items: BenefitContent[];
-  };
   editorial: EditorialContent;
   featuredProducts: SectionHeadingContent & {
     id: string;
@@ -90,7 +108,7 @@ export interface HomePageContent {
     action: LinkContent;
     steps: BenefitContent[];
   };
-  closingEditorial: EditorialContent;
+  closingEditorial: ClosingEditorialContent;
   finalCta: SectionHeadingContent & {
     id: string;
     action: LinkContent;

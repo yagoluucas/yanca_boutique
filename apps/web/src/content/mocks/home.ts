@@ -36,33 +36,56 @@ export const homeContent: HomePageContent = {
       external: true,
     },
   },
-  benefits: {
-    accessibilityLabel: "Diferenciais da Yanca Boutique",
-    items: [
-      {
-        title: "Atendimento próximo",
-        description: "Converse diretamente com a loja.",
-      },
-      {
-        title: "Curadoria feminina",
-        description: "Peças escolhidas para diferentes estilos.",
-      },
-      {
-        title: "Compra simples",
-        description: "Escolha no site e finalize pelo WhatsApp.",
-      },
-    ],
-  },
   editorial: {
     id: "novidades",
-    eyebrow: "Novidades da boutique",
-    title: "Looks marcantes sem abrir mão do conforto.",
-    image: {
-      src: "https://placehold.co/900x1100/d3c2b7/1c1917?text=Editorial+Yanca",
-      alt: "Espaço reservado para fotografia editorial de uma novidade da boutique",
-      width: 900,
-      height: 1100,
-    },
+    eyebrow: "Editorial Yanca",
+    title: "Compre o look",
+    description: "Toque nos pontos para conhecer cada peça.",
+    looks: [
+      {
+        id: "look-comfy-1",
+        image: {
+          src: "/images/conjunto-frio-1.jpeg",
+          alt: "Modelo usando blusa e calça comfy em tons off-white",
+          width: 737,
+          height: 1305,
+        },
+        items: [
+          {
+            id: "blusa-comfy-off-white",
+            name: "Blusa Comfy Off-white",
+            category: "Blusas",
+            priceLabel: "Consulte o valor",
+            position: { x: 65, y: 42 },
+            link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Blusa%20Comfy%20Off-white%20do%20look%20editorial.", external: true },
+          },
+          {
+            id: "calca-comfy-off-white",
+            name: "Calça Comfy Off-white",
+            category: "Calças",
+            priceLabel: "Consulte o valor",
+            position: { x: 63, y: 78 },
+            link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Cal%C3%A7a%20Comfy%20Off-white%20do%20look%20editorial.", external: true },
+          },
+        ],
+      },
+      {
+        id: "look-comfy-2",
+        image: { src: "/images/conjunto-frio-1.jpeg", alt: "Modelo usando blusa e calça comfy em tons off-white", width: 737, height: 1305 },
+        items: [
+          { id: "blusa-comfy-off-white", name: "Blusa Comfy Off-white", category: "Blusas", priceLabel: "Consulte o valor", position: { x: 65, y: 42 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Blusa%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
+          { id: "calca-comfy-off-white", name: "Calça Comfy Off-white", category: "Calças", priceLabel: "Consulte o valor", position: { x: 63, y: 78 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Cal%C3%A7a%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
+        ],
+      },
+      {
+        id: "look-comfy-3",
+        image: { src: "/images/conjunto-frio-1.jpeg", alt: "Modelo usando blusa e calça comfy em tons off-white", width: 737, height: 1305 },
+        items: [
+          { id: "blusa-comfy-off-white", name: "Blusa Comfy Off-white", category: "Blusas", priceLabel: "Consulte o valor", position: { x: 65, y: 42 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Blusa%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
+          { id: "calca-comfy-off-white", name: "Calça Comfy Off-white", category: "Calças", priceLabel: "Consulte o valor", position: { x: 63, y: 78 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Cal%C3%A7a%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
+        ],
+      },
+    ],
   },
   featuredProducts: {
     id: "destaques",
