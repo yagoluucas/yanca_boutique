@@ -43,9 +43,8 @@ const { product } = Astro.props;
       const panelId = `${product.id}-${detail.id}-panel`;
       return (
         <article
-          class:list={['product-card__detail', `product-card__detail--${detail.panelPosition ?? 'right'}`]}
+          class="product-card__detail"
           id={panelId}
-          style={`--detail-x: ${detail.position.x}%; --detail-y: ${detail.position.y}%;`}
           data-product-detail
           hidden
         >
@@ -79,8 +78,56 @@ const { product } = Astro.props;
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-product-card]').forEach((card) => {
+    const media = card.querySelector<HTMLElement>('.product-card__media');
     const hotspots = Array.from(card.querySelectorAll<HTMLButtonElement>('[data-product-hotspot]'));
     const panels = Array.from(card.querySelectorAll<HTMLElement>('[data-product-detail]'));
+
+    const clamp = (value: number, min: number, max: number) =>
+      Math.min(Math.max(value, min), Math.max(min, max));
+
+    const positionDetail = (hotspot: HTMLButtonElement, panel: HTMLElement) => {
+      if (!media) return;
+
+      const inset = 16;
+      const gap = 14;
+      const mediaWidth = media.clientWidth;
+      const mediaHeight = media.clientHeight;
+      const panelWidth = Math.min(288, Math.max(0, mediaWidth - inset * 2));
+
+      // O painel sempre permanece contido dentro da própria imagem.
+      panel.style.width = `${panelWidth}px`;
+      panel.style.maxHeight = `${Math.max(0, mediaHeight - inset * 2)}px`;
+      panel.style.overflowY = 'auto';
+      panel.style.right = 'auto';
+      panel.style.transform = 'none';
+
+      const mediaRect = media.getBoundingClientRect();
+      const hotspotRect = hotspot.getBoundingClientRect();
+      const panelRect = panel.getBoundingClientRect();
+
+      const hotspotCenterX = hotspotRect.left - mediaRect.left + hotspotRect.width / 2;
+      const hotspotTop = hotspotRect.top - mediaRect.top;
+      const hotspotBottom = hotspotRect.bottom - mediaRect.top;
+      const panelHeight = panelRect.height;
+
+      const spaceAbove = hotspotTop - gap - inset;
+      const spaceBelow = mediaHeight - hotspotBottom - gap - inset;
+
+      let top = spaceBelow >= panelHeight || spaceBelow >= spaceAbove
+        ? hotspotBottom + gap
+        : hotspotTop - gap - panelHeight;
+
+      top = clamp(top, inset, mediaHeight - panelHeight - inset);
+
+      const left = clamp(
+        hotspotCenterX - panelWidth / 2,
+        inset,
+        mediaWidth - panelWidth - inset,
+      );
+
+      panel.style.top = `${top}px`;
+      panel.style.left = `${left}px`;
+    };
 
     const closeDetails = (returnFocus = false) => {
       const activeHotspot = hotspots.find((hotspot) => hotspot.getAttribute('aria-expanded') === 'true');
@@ -89,19 +136,39 @@ const { product } = Astro.props;
       if (returnFocus) activeHotspot?.focus();
     };
 
+    const repositionOpenDetail = () => {
+      const activeHotspot = hotspots.find((hotspot) => hotspot.getAttribute('aria-expanded') === 'true');
+      if (!activeHotspot) return;
+
+      const panel = card.querySelector<HTMLElement>(`#${activeHotspot.dataset.target}`);
+      if (panel && !panel.hidden) positionDetail(activeHotspot, panel);
+    };
+
     hotspots.forEach((hotspot) => {
       hotspot.addEventListener('click', () => {
         const wasOpen = hotspot.getAttribute('aria-expanded') === 'true';
         const panel = card.querySelector<HTMLElement>(`#${hotspot.dataset.target}`);
         closeDetails();
         if (wasOpen || !panel) return;
+
         hotspot.setAttribute('aria-expanded', 'true');
         panel.hidden = false;
+        positionDetail(hotspot, panel);
       });
     });
 
-    card.querySelectorAll<HTMLButtonElement>('[data-product-detail-close]').forEach((button) => button.addEventListener('click', () => closeDetails(true)));
-    document.addEventListener('click', (event) => { if (event.target instanceof Node && !card.contains(event.target)) closeDetails(); });
-    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeDetails(true); });
+    card.querySelectorAll<HTMLButtonElement>('[data-product-detail-close]').forEach((button) =>
+      button.addEventListener('click', () => closeDetails(true)),
+    );
+
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !card.contains(event.target)) closeDetails();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeDetails(true);
+    });
+
+    window.addEventListener('resize', repositionOpenDetail);
   });
 </script>
