@@ -1,7 +1,13 @@
 import type { HomePageContent } from "../types";
 
-const whatsappHref =
-  "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20quero%20conhecer%20as%20pe%C3%A7as%20da%20Yanca%20Boutique.";
+const whatsappBaseUrl = "https://wa.me/5511999999999";
+
+const createWhatsAppHref = (message: string) =>
+  `${whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
+
+const whatsappHref = createWhatsAppHref(
+  "Olá, quero conhecer as peças da Yanca Boutique.",
+);
 
 export const homeContent: HomePageContent = {
   seo: {
@@ -57,7 +63,13 @@ export const homeContent: HomePageContent = {
             category: "Blusas",
             priceLabel: "Consulte o valor",
             position: { x: 65, y: 42 },
-            link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Blusa%20Comfy%20Off-white%20do%20look%20editorial.", external: true },
+            link: {
+              label: "Consultar no WhatsApp",
+              href: createWhatsAppHref(
+                "Olá, gostaria de consultar a Blusa Comfy Off-white do look editorial.",
+              ),
+              external: true,
+            },
           },
           {
             id: "calca-comfy-off-white",
@@ -65,7 +77,13 @@ export const homeContent: HomePageContent = {
             category: "Calças",
             priceLabel: "Consulte o valor",
             position: { x: 63, y: 78 },
-            link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Cal%C3%A7a%20Comfy%20Off-white%20do%20look%20editorial.", external: true },
+            link: {
+              label: "Consultar no WhatsApp",
+              href: createWhatsAppHref(
+                "Olá, gostaria de consultar a Calça Comfy Off-white do look editorial.",
+              ),
+              external: true,
+            },
           },
         ],
       },
@@ -73,16 +91,16 @@ export const homeContent: HomePageContent = {
         id: "look-comfy-2",
         image: { src: "/images/conjunto-frio-1.jpeg", alt: "Modelo usando blusa e calça comfy em tons off-white", width: 737, height: 1305 },
         items: [
-          { id: "blusa-comfy-off-white", name: "Blusa Comfy Off-white", category: "Blusas", priceLabel: "Consulte o valor", position: { x: 65, y: 42 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Blusa%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
-          { id: "calca-comfy-off-white", name: "Calça Comfy Off-white", category: "Calças", priceLabel: "Consulte o valor", position: { x: 63, y: 78 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Cal%C3%A7a%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
+          { id: "blusa-comfy-off-white", name: "Blusa Comfy Off-white", category: "Blusas", priceLabel: "Consulte o valor", position: { x: 65, y: 42 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: createWhatsAppHref("Olá, gostaria de consultar a Blusa Comfy Off-white do look editorial."), external: true } },
+          { id: "calca-comfy-off-white", name: "Calça Comfy Off-white", category: "Calças", priceLabel: "Consulte o valor", position: { x: 63, y: 78 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: createWhatsAppHref("Olá, gostaria de consultar a Calça Comfy Off-white do look editorial."), external: true } },
         ],
       },
       {
         id: "look-comfy-3",
         image: { src: "/images/conjunto-frio-1.jpeg", alt: "Modelo usando blusa e calça comfy em tons off-white", width: 737, height: 1305 },
         items: [
-          { id: "blusa-comfy-off-white", name: "Blusa Comfy Off-white", category: "Blusas", priceLabel: "Consulte o valor", position: { x: 65, y: 42 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Blusa%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
-          { id: "calca-comfy-off-white", name: "Calça Comfy Off-white", category: "Calças", priceLabel: "Consulte o valor", position: { x: 63, y: 78 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: "https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20a%20Cal%C3%A7a%20Comfy%20Off-white%20do%20look%20editorial.", external: true } },
+          { id: "blusa-comfy-off-white", name: "Blusa Comfy Off-white", category: "Blusas", priceLabel: "Consulte o valor", position: { x: 65, y: 42 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: createWhatsAppHref("Olá, gostaria de consultar a Blusa Comfy Off-white do look editorial."), external: true } },
+          { id: "calca-comfy-off-white", name: "Calça Comfy Off-white", category: "Calças", priceLabel: "Consulte o valor", position: { x: 63, y: 78 }, panelPosition: "left", link: { label: "Consultar no WhatsApp", href: createWhatsAppHref("Olá, gostaria de consultar a Calça Comfy Off-white do look editorial."), external: true } },
         ],
       },
     ],
