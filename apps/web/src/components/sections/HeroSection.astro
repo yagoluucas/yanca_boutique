@@ -7,11 +7,18 @@ interface Props {
 }
 
 const { content } = Astro.props;
+const imageFocus = content.image.focusPosition ?? { x: 50, y: 50 };
 ---
 
 <section class="hero" id="inicio" aria-labelledby="hero-title">
   <div class="hero__media" aria-hidden="true">
-    <img src="/images/boutique-hero.png" alt="" />
+    <img
+      src={content.image.src}
+      alt=""
+      width={content.image.width}
+      height={content.image.height}
+      style={`object-position: ${imageFocus.x}% ${imageFocus.y}%;`}
+    />
   </div>
   <div class="container hero__content">
     <div class="hero__panel">

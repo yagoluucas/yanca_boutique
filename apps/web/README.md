@@ -16,37 +16,30 @@ npm run check
 npm run build
 ```
 
-O conteúdo da home é obtido exclusivamente por `src/content/getHomeContent.ts`. Hoje ele retorna dados mockados; futuramente poderá ser adaptado para um CMS headless sem alterar os componentes da página.
+## Conteúdo e CMS
+
+A home obtém todo o conteúdo por `src/content/getHomeContent.ts`. O arquivo usado como fonte é `src/content/data/home.json`, que será publicado pelo CMS em `apps/cms`.
+
+Isso mantém os componentes visuais desacoplados da origem do conteúdo. O CMS pode alterar textos, links, imagens, ordem de itens, enquadramento (`focusPosition`) e posição dos hotspots sem alterar os componentes Astro.
+
+Como o frontend usa `output: 'static'`, uma publicação do CMS precisa gerar um novo build/deploy. Quando o deploy estiver conectado ao GitHub, o commit criado pelo CMS já pode disparar esse fluxo automaticamente.
 
 ## Posicionamento das imagens e marcadores da vitrine
 
-As imagens dos cards de produto usam um container padronizado. O recorte da foto pode ser ajustado individualmente com `focusPosition`, em porcentagem:
+O recorte das imagens é controlado por `focusPosition`, em porcentagem:
 
-```ts
-image: {
-  src: '/images/look-01.jpeg',
-  alt: 'Descrição da imagem',
-  width: 1080,
-  height: 1350,
-  focusPosition: { x: 50, y: 35 },
+```json
+{
+  "focusPosition": { "x": 50, "y": 35 }
 }
 ```
 
-Os marcadores `+` também são configurados por foto. Cada detalhe deve informar sua própria posição dentro da imagem renderizada:
+Os marcadores `+` também usam coordenadas percentuais:
 
-```ts
-details: [
-  {
-    id: 'blusa',
-    name: 'Blusa',
-    position: { x: 62, y: 38 },
-  },
-  {
-    id: 'calca',
-    name: 'Calça',
-    position: { x: 58, y: 72 },
-  },
-]
+```json
+{
+  "position": { "x": 62, "y": 38 }
+}
 ```
 
-Ao trocar a fotografia, ajuste `focusPosition` e os valores `x/y` dos detalhes para manter o enquadramento e os hotspots alinhados com as peças da nova imagem.
+Ao trocar uma fotografia, ajuste o foco e, quando aplicável, os hotspots para manter o enquadramento alinhado à nova imagem.

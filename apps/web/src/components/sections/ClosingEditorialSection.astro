@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { content } = Astro.props;
+const imageFocus = content.image.focusPosition ?? { x: 50, y: 50 };
 ---
 
 <section class="closing-editorial section" id={content.id} aria-label={content.title}>
@@ -17,6 +18,7 @@ const { content } = Astro.props;
       height={content.image.height}
       loading="lazy"
       decoding="async"
+      style={`object-position: ${imageFocus.x}% ${imageFocus.y}%;`}
     />
   </div>
 </section>
